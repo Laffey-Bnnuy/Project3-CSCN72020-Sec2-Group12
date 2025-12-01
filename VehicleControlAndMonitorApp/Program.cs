@@ -26,7 +26,7 @@ namespace EVSystem
             
             // --- Components from dev_Daniel Branch ---
             IBattery battery = new BatteryMonitor(adapter);
-            IChargingControl charger = new ChargingControl(adapter);
+            IChargingControl charger = new ChargingControl(adapter,battery);
 
             // ------------------------------------------------------------------
             // --- Master Branch Simulation Logic ---
@@ -76,7 +76,7 @@ namespace EVSystem
 
             Console.WriteLine("\nSchedule charging for tonight");
             charger.ScheduleCharging("23:00 - 05:00");
-            Console.WriteLine($"The schedule is: {charger.GetSchedule()}");
+            Console.WriteLine($"The schedule is: {charger.Schedule}");
             
             // Cleanup / shutdown actions (from both branches)
             camera.DeactivateCamera();
