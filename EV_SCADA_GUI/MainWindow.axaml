@@ -1,0 +1,36 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="EV_SCADA.GUI.MainWindow"
+        Title="EV SCADA Dashboard" Height="500" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Door Control Panel -->
+        <StackPanel Grid.Column="0" Margin="10">
+            <TextBlock Text="Door Control" FontWeight="Bold" FontSize="16"/>
+            <TextBlock Name="DoorStateText" Text="State: Locked" Margin="0,5"/>
+            <Button Name="UnlockButton" Content="Unlock Door" Margin="0,5" Click="UnlockButton_Click"/>
+            <Button Name="LockButton" Content="Lock Door" Margin="0,5" Click="LockButton_Click"/>
+            <Button Name="GenerateTokenButton" Content="Generate Token" Margin="0,5" Click="GenerateTokenButton_Click"/>
+            <ListBox Name="DoorLogsList" Height="200" Margin="0,10"/>
+        </StackPanel>
+
+        <!-- RearView Camera Panel -->
+        <StackPanel Grid.Column="1" Margin="10">
+            <TextBlock Text="Rear View Camera" FontWeight="Bold" FontSize="16"/>
+            <Image Name="CameraFeed" Height="200" Width="400" Margin="0,5"/>
+            <TextBlock Name="CameraAlert" Foreground="Red" FontWeight="Bold" Margin="0,5"/>
+            <Button Name="ActivateCameraButton" Content="Activate Camera" Margin="0,5" Click="ActivateCameraButton_Click"/>
+            <Button Name="DeactivateCameraButton" Content="Deactivate Camera" Margin="0,5" Click="DeactivateCameraButton_Click"/>
+            <Button Name="SnapshotButton" Content="Capture Snapshot" Margin="0,5" Click="SnapshotButton_Click"/>
+            <ListBox Name="PlaybackList" Height="200" Margin="0,10"/>
+        </StackPanel>
+    </Grid>
+</Window>
+
+
+
+
