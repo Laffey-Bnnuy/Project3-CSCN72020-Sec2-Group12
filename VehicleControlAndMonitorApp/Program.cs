@@ -2,49 +2,54 @@
 using System.Threading;
 using EVSystem.Communication;
 using EVSystem.Components;
-using EVSystem.Interfaces;
 using EVSystem.Mock;
 
-namespace EVSystem.TestApp
+namespace EVSystem
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("=== EV System Test ===\n");
+            Console.WriteLine("\nEV SYSTEM DIAGNOSTICS SIMULATION STARTED\n");
 
-            // Create mock adapter
-            J1939Adapter adapter = new MockJ1939Adapter();
+            // Create shared J1939 communication adapter
+            J1939Adapter j1939 = new MockJ1939Adapter();
 
-            // Create battery system
-            IBattery battery = new BatteryMonitor(adapter);
+            // Create components
+            var tireMonitor = new TirePressureMonitor(j1939);
+            var camera = new MockRearViewCamera();
+            var reverseAlerts = new ReverseAlerts(j1939, camera);
+            var lightControl = new LightControl(j1939);
 
-            // Create charging controller
-            ChargingControl charger = new ChargingControl(adapter, battery);
+            // Enable automatic headlights
+            lightControl.EnableAutoMode();
 
-           
-            Console.WriteLine("\nSystem running... Press Ctrl+C to exit.\n");
-
-            // Simulation loop
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 10; i++) // Simulate 10 cycles
             {
-                Console.WriteLine($"--- Cycle {i + 1} ---");
+                Console.WriteLine($"\n--- System Update Cycle #{i + 1} ---");
 
-                // Update battery data from CSV list
-                battery.LoadNextData();
+                // Update systems
+                tireMonitor.UpdateTirePressures();
+                bool tireStatus = tireMonitor.CheckTirePressure();
+                Console.WriteLine(tireMonitor.GetStatus());
 
-                // Execute charging cycle (charge increases only if IsCharging == true)
-                charger.LoadNextData();
+                reverseAlerts.UpdateSensorData();
+                reverseAlerts.DetectObstacle();
+                Console.WriteLine(reverseAlerts.GetStatus());
 
-                // Print system status
-                Console.WriteLine(battery.GetStatus());
-                Console.WriteLine($"Charging set {(charger.IsCharging ? "ACTIVE" : "OFF")} | Limit: {charger.ChargeLimit}% | Schedule: {charger.Schedule}");
-                Console.WriteLine();
+                lightControl.UpdateAmbientLight();
+                Console.WriteLine(lightControl.GetStatus());
 
-                Thread.Sleep(1000); // Just for readable output in console
+                Console.WriteLine("\n--- Waiting 2 seconds before next cycle ---\n");
+                Thread.Sleep(2000);
             }
 
-            Console.WriteLine("\n=== Test Complete ===");
+            Console.WriteLine("\n=== Simulation Complete. Shutting down systems. ===\n");
+
+            // Cleanup / shutdown actions
+            camera.DeactivateCamera();
+
+            Console.WriteLine("\n=== EV SYSTEM DIAGNOSTICS ENDED ===");
         }
     }
 }

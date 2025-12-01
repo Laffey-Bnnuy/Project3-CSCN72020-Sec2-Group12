@@ -75,17 +75,17 @@ namespace EVSystem.Components
             if (AmbientLight < 200)
             {
                 LightMode = "Full";
-                Console.WriteLine("[LightControl] 💡 Auto: Lights set to FULL (dark environment)");
+                Console.WriteLine("[LightControl] Auto: Lights set to FULL (dark environment)");
             }
             else if (AmbientLight < 500)
             {
                 LightMode = "Parking";
-                Console.WriteLine("[LightControl] 💡 Auto: Lights set to PARKING (dim environment)");
+                Console.WriteLine("[LightControl] Auto: Lights set to PARKING (dim environment)");
             }
             else
             {
                 LightMode = "Off";
-                Console.WriteLine("[LightControl] 💡 Auto: Lights turned OFF (bright environment)");
+                Console.WriteLine("[LightControl] Auto: Lights turned OFF (bright environment)");
             }
         }
 

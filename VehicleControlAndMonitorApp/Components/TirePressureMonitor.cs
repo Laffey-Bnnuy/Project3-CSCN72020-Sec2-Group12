@@ -93,19 +93,19 @@ namespace EVSystem.Components
                 }
                 else if (tire.Value < MIN_PRESSURE)
                 {
-                    Console.WriteLine($"[TirePressureMonitor] ⚠️  LOW PRESSURE: {tire.Key} = {tire.Value:F1} PSI (Min: {MIN_PRESSURE} PSI)");
+                    Console.WriteLine($"[TirePressureMonitor] LOW PRESSURE: {tire.Key} = {tire.Value:F1} PSI (Min: {MIN_PRESSURE} PSI)");
                     allOk = false;
                 }
                 else if (tire.Value > MAX_PRESSURE)
                 {
-                    Console.WriteLine($"[TirePressureMonitor] ⚠️  HIGH PRESSURE: {tire.Key} = {tire.Value:F1} PSI (Max: {MAX_PRESSURE} PSI)");
+                    Console.WriteLine($"[TirePressureMonitor] HIGH PRESSURE: {tire.Key} = {tire.Value:F1} PSI (Max: {MAX_PRESSURE} PSI)");
                     allOk = false;
                 }
             }
 
             if (allOk)
             {
-                Console.WriteLine("[TirePressureMonitor] ✓ All tire pressures are normal");
+                Console.WriteLine("[TirePressureMonitor] All tire pressures are normal");
             }
 
             return allOk;
@@ -113,7 +113,7 @@ namespace EVSystem.Components
 
         public void AlertReplacement(string tire)
         {
-            Console.WriteLine($"[TirePressureMonitor] 🚨 CRITICAL: {tire} pressure is {TirePressures[tire]:F1} PSI - IMMEDIATE REPLACEMENT REQUIRED!");
+            Console.WriteLine($"[TirePressureMonitor] CRITICAL: {tire} pressure is {TirePressures[tire]:F1} PSI - IMMEDIATE REPLACEMENT REQUIRED!");
         }
 
         public string GetStatus()

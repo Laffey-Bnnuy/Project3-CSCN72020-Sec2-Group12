@@ -92,7 +92,7 @@ namespace EVSystem.Components
                     _ => "LOW"
                 };
 
-                Console.WriteLine($"[ReverseAlerts] ⚠️  WARNING ({warningLevel}): Obstacle detected at {DistanceToObstacle:F2}m!");
+                Console.WriteLine($"[ReverseAlerts]  WARNING ({warningLevel}): Obstacle detected at {DistanceToObstacle:F2}m!");
                 Console.WriteLine($"[ReverseAlerts] {_rearViewCamera.GetVideoFeed()}");
             }
         }
