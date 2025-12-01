@@ -1,0 +1,11 @@
+﻿BatteryLevel,Temperature,Mode
+95,22,Normal
+87,25,Normal
+76,27,Sport
+65,29,Sport
+55,32,Normal
+43,36,Sport
+30,38,Eco
+22,41,Eco
+15,44,Eco
+8,47,Eco
