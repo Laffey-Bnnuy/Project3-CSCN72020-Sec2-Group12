@@ -19,9 +19,10 @@ namespace EV_SCADA.GUI
         {
             InitializeComponent();
 
-            // Bind ObservableCollections
-            DoorLogsList.Items = DoorLogs;
-            PlaybackList.Items = PlaybackLogs;
+          // Bind ObservableCollections
+            DoorLogsList.ItemsSource = DoorLogs;
+            PlaybackList.ItemsSource = PlaybackLogs;
+
 
             // Subscribe to door events
             _doorControl.OnStateChanged += state =>
