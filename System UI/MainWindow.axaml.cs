@@ -5,17 +5,33 @@ using EVSystem.Components;
 using EVSystem.Controllers;
 using EVSystem.Mock;
 using System;
+using System.Collections.ObjectModel;
+using VehicleMonitorGUI.MockComponents;
 
 namespace System_UI
 {
     public partial class MainWindow : Window
     {
+
         private readonly EVSystemController _controller;
         private readonly DispatcherTimer _chargeTimer;
+
+
+       
+
+        private readonly ObservableCollection<string> _pressureList = new();
+        private readonly ObservableCollection<string> _snapshots = new();
         private float _stepRate = 2f; // Battery % per tick
 
+        // Nikhil
+      
+        private readonly MockLightControl _lights = new();
+        private readonly MockTirePressureMonitor _tire = new();
+        private readonly MockReverseAlerts _reverseAlerts = new();
+        private readonly MockRearViewCameraUI _camera = new();
 
-        
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -86,6 +102,12 @@ namespace System_UI
                 LimitStatus.Text = $"Current limit: {newLimit}%";
             };
 
+
+            //Nikhil bind UI
+          
+            PressureList.ItemsSource = _pressureList;
+            SnapshotsList.ItemsSource = _snapshots;
+
         }
 
 
@@ -131,6 +153,56 @@ namespace System_UI
         }
 
 
+
+        // ========== LIGHTS ==========
+        private void LightsOn_Click(object? sender, RoutedEventArgs e)
+        {
+            _lights.TurnLightsOn();
+            LightStatus.Text = "Lights ON";
+        }
+
+        private void LightsOff_Click(object? sender, RoutedEventArgs e)
+        {
+            _lights.TurnLightsOff();
+            LightStatus.Text = "Lights OFF";
+        }
+
+        // ========== TIRE PRESSURE ==========
+        private void ReadPressure_Click(object? sender, RoutedEventArgs e)
+        {
+            _pressureList.Clear();
+
+            var pressures = _tire.ReadPressure();
+
+            foreach (var p in pressures)
+                _pressureList.Add($"{p.Tire} -> {p.Pressure} PSI");
+        }
+
+        // ========== REVERSE ALERTS ==========
+        private void CheckAlert_Click(object? sender, RoutedEventArgs e)
+        {
+            var distance = DistanceSlider.Value;
+            AlertOutput.Text = _reverseAlerts.GetAlertMessage(distance);
+        }
+
+        // ========== CAMERA ==========
+        private void ActivateCamera_Click(object? sender, RoutedEventArgs e)
+        {
+            _camera.Activate();
+            CameraStatusText.Text = "Camera Activated";
+        }
+
+        private void DeactivateCamera_Click(object? sender, RoutedEventArgs e)
+        {
+            _camera.Deactivate();
+            CameraStatusText.Text = "Camera Deactivated";
+        }
+
+        private void Snapshot_Click(object? sender, RoutedEventArgs e)
+        {
+            var snap = _camera.CaptureSnapshot();
+            _snapshots.Add(snap);
+        }
     }
 
 }

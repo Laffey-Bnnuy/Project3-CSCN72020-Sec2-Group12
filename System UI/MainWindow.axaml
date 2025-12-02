@@ -1,10 +1,11 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="System_UI.MainWindow"
-        Width="800"
+        Width="1000"
         Height="600"
         Title="EV System UI (Test)">
-    
+ <TabControl>   
+    <TabItem Header="Battery/ Charging control">
    <StackPanel Margin="20" Spacing="12">
 
         <TextBlock Text="EV System Dashboard" 
@@ -28,21 +29,23 @@
         <Separator/>
 
         <StackPanel Orientation="Horizontal" Spacing="10">
-            <Button x:Name="RefreshButton" Content="Refresh Both" Width="120"/>
+            <Button x:Name="RefreshButton" Content="Load Both" Width="120"/>
             <StackPanel Orientation="Horizontal" Spacing="10">
-            <Button x:Name="RefreshBatteryButton" Content="Refresh Battery" Width="140"/>
-            <Button x:Name="RefreshChargingButton" Content="Refresh Charging" Width="140"/>
+            <Button x:Name="RefreshBatteryButton" Content="Load Battery Data" Width="140"/>
+            <Button x:Name="RefreshChargingButton" Content="Load Charging Data" Width="140"/>
             </StackPanel>
 
             <Button x:Name="StartChargeButton" Content="Start Charging" Width="140"/>
             <Button x:Name="StopChargeButton" Content="Stop Charging" Width="140"/>
+
         </StackPanel>
-       <StackPanel Spacing="10" Margin="20">
+       <StackPanel Spacing="10" Margin="0">
+
 
     <TextBlock Text="Set Charge Limit (%)" FontWeight="Bold"/>
 
     <StackPanel Orientation="Horizontal" Spacing="10">
-        <TextBox x:Name="LimitInput" Width="70" Watermark="10-100"/>
+        <TextBox x:Name="LimitInput" Width="60" Watermark="10-100"/>
         <Button x:Name="ApplyLimitBtn" Content="Apply" Width="80"/>
     </StackPanel>
 
@@ -52,5 +55,46 @@
 
 
     </StackPanel>
+        </TabItem>
 
+     <TabItem Header="Lights">
+            <StackPanel Margin="20">
+                <TextBlock Text="Light Control" FontSize="26" FontWeight="Bold"/>
+                <Button Content="Turn Lights ON" Click="LightsOn_Click" Margin="5"/>
+                <Button Content="Turn Lights OFF" Click="LightsOff_Click" Margin="5"/>
+                <TextBlock x:Name="LightStatus" Margin="10"/>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Tire Pressure">
+            <StackPanel Margin="20">
+                <TextBlock Text="Tire Pressure Monitor" FontSize="26" FontWeight="Bold"/>
+                <Button Content="Read Pressure" Click="ReadPressure_Click" Margin="10"/>
+                <ListBox x:Name="PressureList" Height="350"/>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Reverse Alerts">
+            <StackPanel Margin="20">
+                <TextBlock Text="Reverse Alert System" FontSize="26" FontWeight="Bold"/>
+                <Slider x:Name="DistanceSlider" Minimum="0" Maximum="200" Value="100" Margin="10"/>
+                <Button Content="Check Alert" Click="CheckAlert_Click"/>
+                <TextBlock x:Name="AlertOutput" Margin="10"/>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Rear Camera">
+            <StackPanel Margin="20">
+                <TextBlock Text="Rear View Camera" FontSize="26" FontWeight="Bold"/>
+                <Button Content="Activate Camera" Click="ActivateCamera_Click"/>
+                <Button Content="Deactivate Camera" Click="DeactivateCamera_Click" Margin="10"/>
+                <Button Content="Capture Snapshot" Click="Snapshot_Click"/>
+                <ListBox x:Name="SnapshotsList" Height="300" Margin="10"/>
+                <TextBlock x:Name="CameraStatusText"/>
+            </StackPanel>
+        </TabItem>
+
+     
+
+     </TabControl>  
 </Window>
