@@ -60,8 +60,9 @@ namespace System_UI
             StopChargeButton.Click += (_, _) => _controller.StopCharging();
 
             // Set limit charge
-            LimitStatus.Text = $"Current limit: {_controller.CurrentChargeLimit}%";
-            LimitInput.Text = _controller.CurrentChargeLimit.ToString();
+            _controller.OnChargeLimitChanged += UpdateChargeLimitDisplay;
+            LimitStatus.Text = $"Current limit: {_controller.GetChargeLimit()}%";
+            LimitInput.Text = _controller.GetChargeLimit().ToString();
 
             ApplyLimitBtn.Click += (_, _) =>
             {
@@ -90,7 +91,7 @@ namespace System_UI
         {
             float current = _controller.GetBatteryLevel();
 
-            if (!_controller.CurrentChargeLimit.Equals(null) && current >= _controller.CurrentChargeLimit)
+            if (!_controller.GetChargeLimit().Equals(null) && current >= _controller.GetChargeLimit())
             {
                 _controller.StopCharging();
                 _chargeTimer.Stop();
@@ -99,15 +100,20 @@ namespace System_UI
 
             float newLevel = current + _stepRate;
 
-            if (newLevel >= _controller.CurrentChargeLimit)
+            if (newLevel >= _controller.GetChargeLimit())
             {
-                newLevel = _controller.CurrentChargeLimit;
+                newLevel = _controller.GetChargeLimit();
                 _controller.StopCharging();
                 _chargeTimer.Stop();
             }
 
             _controller.SimulateBatteryUpdate(newLevel);
             
+        }
+        private void UpdateChargeLimitDisplay(float limit)
+        {
+            LimitStatus.Text = $"Current limit: {limit}%";
+            LimitInput.Text = limit.ToString();
         }
 
 

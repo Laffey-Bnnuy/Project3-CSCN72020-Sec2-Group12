@@ -16,5 +16,7 @@
         void ScheduleCharging(string schedule);
         public void LoadNextData();
 
+        public void ApplyChargingEffect();
+
     }
 }

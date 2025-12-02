@@ -12,6 +12,7 @@ namespace EVSystem.Controllers
         public event Action<string>? OnStatusChanged;
         public event Action<float>? OnBatteryLevelChanged;
         public event Action<bool>? OnChargingStateChanged;
+        public event Action<float>? OnChargeLimitChanged;
 
         public EVSystemController(BatteryMonitor batteryMonitor, ChargingControl chargingControl)
         {
@@ -32,6 +33,7 @@ namespace EVSystem.Controllers
             OnBatteryLevelChanged?.Invoke(_batteryMonitor.BatteryLevel);
             OnStatusChanged?.Invoke(GetBatteryStatus());
             OnChargingStateChanged?.Invoke(_chargingControl.IsCharging);
+            OnChargeLimitChanged?.Invoke(_chargingControl.ChargeLimit);
         }
 
         // Charging control
@@ -66,17 +68,18 @@ namespace EVSystem.Controllers
 
         public void SimulateBatteryUpdate(float newLevel)
         {
-           
-            var batteryProp = typeof(BatteryMonitor).GetProperty("BatteryLevel");
-            batteryProp?.SetValue(_batteryMonitor, newLevel);
+            _batteryMonitor.UpdateBatteryLevel(newLevel);
 
-            
+
             OnBatteryLevelChanged?.Invoke(newLevel);
             OnStatusChanged?.Invoke($"Battery updated to {newLevel}%");
         }
 
-
-        public float CurrentChargeLimit { get; private set; } = 80;
+        public float GetChargeLimit()
+        {
+            return _chargingControl.ChargeLimit;
+        }
+        
 
         public void SetBattryChargeLimit(float limit)
         {
@@ -85,13 +88,15 @@ namespace EVSystem.Controllers
                 OnStatusChanged?.Invoke("Invalid limit. Must be between 10% and 100%.");
                 return;
             }
-
+            
             _chargingControl.SetChargeLimit(limit);
-            CurrentChargeLimit = limit;
 
+            
             OnStatusChanged?.Invoke($"Charge limit set to {limit}%.");
+           
         }
 
+        
 
     }
 }

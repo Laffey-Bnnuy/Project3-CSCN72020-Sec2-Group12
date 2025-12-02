@@ -1,6 +1,6 @@
 ﻿IsCharging,ChargeLimit,Schedule
-true,80,22:00-06:00
-true,100,Immediate
-true,100,01:00-04:00
-true,20,Home Charger
-true,100,08:00-10:00
+true,50,22:00-06:00
+true,60,Now
+true,70,01:00-04:00
+true,80,Now
+true,50,08:00-10:00

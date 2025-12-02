@@ -87,7 +87,7 @@ namespace EVSystem.Components
             Console.WriteLine($"[ChargingControl] Charging: {IsCharging}, Limit: {ChargeLimit}%, Schedule: {Schedule}");
         }
 
-        private void ApplyChargingEffect()
+        public void ApplyChargingEffect()
         {
             if (_battery == null) return;
 
