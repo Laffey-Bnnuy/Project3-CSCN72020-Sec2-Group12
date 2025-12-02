@@ -1,0 +1,481 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:EVSystem.ViewModels"
+        x:Class="EVSystem.Views.MainWindow"
+        Title="EV Monitoring & Control System"
+        Width="1400" Height="900"
+        MinWidth="1200" MinHeight="700"
+        Icon="/Assets/avalonia-logo.ico"
+        Background="#F5F7FA">
+
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <Grid ColumnDefinitions="250,*">
+        
+        <!-- Left Sidebar -->
+        <Border Grid.Column="0" Classes="sidebar">
+            <StackPanel>
+                <!-- Header -->
+                <Border Background="#3498DB" Padding="20" Margin="0,0,0,20">
+                    <StackPanel>
+                        <TextBlock Text="🚗 EV System" 
+                                   FontSize="20" 
+                                   FontWeight="Bold" 
+                                   Foreground="White"
+                                   Margin="0,0,0,5"/>
+                        <TextBlock Text="Control Dashboard" 
+                                   FontSize="12" 
+                                   Foreground="#ECF0F1"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Menu Items -->
+                <Button Classes="menu-button active" Click="ShowOverview">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="📊 " FontSize="16" Margin="0,0,10,0"/>
+                        <TextBlock Text="Overview" FontSize="14"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Classes="menu-button" Click="ShowBattery">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🔋 " FontSize="16" Margin="0,0,10,0"/>
+                        <TextBlock Text="Battery" FontSize="14"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Classes="menu-button" Click="ShowCharging">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="⚡ " FontSize="16" Margin="0,0,10,0"/>
+                        <TextBlock Text="Charging" FontSize="14"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Classes="menu-button" Click="ShowTires">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🛞 " FontSize="16" Margin="0,0,10,0"/>
+                        <TextBlock Text="Tire Pressure" FontSize="14"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Classes="menu-button" Click="ShowLights">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="💡 " FontSize="16" Margin="0,0,10,0"/>
+                        <TextBlock Text="Lights" FontSize="14"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Classes="menu-button" Click="ShowSafety">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🚨 " FontSize="16" Margin="0,0,10,0"/>
+                        <TextBlock Text="Safety" FontSize="14"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <!-- Main Content Area -->
+        <ScrollViewer Grid.Column="1" Padding="30">
+            <StackPanel x:Name="ContentArea">
+                
+                <!-- Overview Content (Default) -->
+                <StackPanel x:Name="OverviewContent">
+                    <TextBlock Text="System Overview" 
+                               FontSize="28" 
+                               FontWeight="Bold" 
+                               Foreground="#2C3E50"
+                               Margin="0,0,0,25"/>
+
+                    <!-- Quick Stats Grid -->
+                    <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto" ColumnSpacing="20" Margin="0,0,0,30">
+                        <!-- Battery Quick Stat -->
+                        <Border Grid.Column="0" Classes="content-panel">
+                            <StackPanel>
+                                <TextBlock Text="🔋 Battery" Classes="panel-title"/>
+                                <TextBlock Text="{Binding BatteryLevel}" 
+                                           FontSize="32" 
+                                           FontWeight="Bold" 
+                                           Foreground="#3498DB"/>
+                                <TextBlock Text="{Binding BatteryRange}" 
+                                           FontSize="14" 
+                                           Foreground="#7F8C8D"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Charging Quick Stat -->
+                        <Border Grid.Column="1" Classes="content-panel">
+                            <StackPanel>
+                                <TextBlock Text="⚡ Charging" Classes="panel-title"/>
+                                <TextBlock Text="{Binding ChargingStatus}" 
+                                           FontSize="24" 
+                                           FontWeight="Bold" 
+                                           Foreground="#27AE60"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Safety Quick Stat -->
+                        <Border Grid.Column="2" Classes="content-panel">
+                            <StackPanel>
+                                <TextBlock Text="🚨 Safety" Classes="panel-title"/>
+                                <TextBlock Text="{Binding ObstacleStatus}" 
+                                           FontSize="24" 
+                                           FontWeight="Bold" 
+                                           Foreground="#E74C3C"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <!-- All Systems Summary -->
+                    <Border Classes="content-panel">
+                        <StackPanel>
+                            <TextBlock Text="All Systems Status" Classes="panel-title"/>
+                            
+                            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="20" RowSpacing="15">
+                                <StackPanel Grid.Row="0" Grid.Column="0">
+                                    <TextBlock Text="Battery Level" Classes="label"/>
+                                    <TextBlock Text="{Binding BatteryLevel}" Classes="value"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="0" Grid.Column="1">
+                                    <TextBlock Text="Light Mode" Classes="label"/>
+                                    <TextBlock Text="{Binding LightMode}" Classes="value"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="1" Grid.Column="0">
+                                    <TextBlock Text="Temperature" Classes="label"/>
+                                    <TextBlock Text="{Binding BatteryTemp}" Classes="value"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="1" Grid.Column="1">
+                                    <TextBlock Text="Camera" Classes="label"/>
+                                    <TextBlock Text="{Binding CameraStatus}" Classes="value"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="2" Grid.Column="0">
+                                    <TextBlock Text="Range" Classes="label"/>
+                                    <TextBlock Text="{Binding BatteryRange}" Classes="value"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="2" Grid.Column="1">
+                                    <TextBlock Text="Obstacle Distance" Classes="label"/>
+                                    <TextBlock Text="{Binding ObstacleDistance}" Classes="value"/>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- Battery Content -->
+                <StackPanel x:Name="BatteryContent" IsVisible="False">
+                    <TextBlock Text="Battery Monitor" 
+                               FontSize="28" 
+                               FontWeight="Bold" 
+                               Foreground="#2C3E50"
+                               Margin="0,0,0,25"/>
+
+                    <Border Classes="content-panel">
+                        <StackPanel>
+                            <TextBlock Text="🔋 Battery Status" Classes="panel-title"/>
+                            
+                            <StackPanel Spacing="20">
+                                <StackPanel>
+                                    <TextBlock Text="Battery Level" Classes="label"/>
+                                    <TextBlock Text="{Binding BatteryLevel}" 
+                                               FontSize="36" 
+                                               FontWeight="Bold" 
+                                               Foreground="#3498DB"/>
+                                </StackPanel>
+
+                                <Grid ColumnDefinitions="*,*" ColumnSpacing="30">
+                                    <StackPanel Grid.Column="0">
+                                        <TextBlock Text="Temperature" Classes="label"/>
+                                        <TextBlock Text="{Binding BatteryTemp}" Classes="value"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1">
+                                        <TextBlock Text="Current Mode" Classes="label"/>
+                                        <TextBlock Text="{Binding BatteryMode}" Classes="value"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <StackPanel>
+                                    <TextBlock Text="Estimated Range" Classes="label"/>
+                                    <TextBlock Text="{Binding BatteryRange}" 
+                                               FontSize="24" 
+                                               FontWeight="SemiBold" 
+                                               Foreground="#27AE60"/>
+                                </StackPanel>
+
+                                <Separator Height="1" Background="#E1E8ED" Margin="0,10"/>
+
+                                <StackPanel>
+                                    <TextBlock Text="Battery Mode" Classes="label"/>
+                                    <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,10,0,0">
+                                        <ComboBox x:Name="BatteryModeCombo" 
+                                                  Width="150" 
+                                                  SelectedIndex="1">
+                                            <ComboBoxItem Content="Eco"/>
+                                            <ComboBoxItem Content="Normal"/>
+                                            <ComboBoxItem Content="Sport"/>
+                                        </ComboBox>
+                                        <Button Content="Set Mode" 
+                                                Classes="action-button"
+                                                Click="SetBatteryMode"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- Charging Content -->
+                <StackPanel x:Name="ChargingContent" IsVisible="False">
+                    <TextBlock Text="Charging Control" 
+                               FontSize="28" 
+                               FontWeight="Bold" 
+                               Foreground="#2C3E50"
+                               Margin="0,0,0,25"/>
+
+                    <Border Classes="content-panel">
+                        <StackPanel>
+                            <TextBlock Text="⚡ Charging Management" Classes="panel-title"/>
+                            
+                            <StackPanel Spacing="20">
+                                <StackPanel>
+                                    <TextBlock Text="Current Status" Classes="label"/>
+                                    <TextBlock Text="{Binding ChargingStatus}" 
+                                               FontSize="28" 
+                                               FontWeight="Bold" 
+                                               Foreground="#27AE60"/>
+                                </StackPanel>
+
+                                <Separator Height="1" Background="#E1E8ED" Margin="0,10"/>
+
+                                <StackPanel>
+                                    <TextBlock Text="Charging Controls" Classes="label" Margin="0,0,0,10"/>
+                                    <StackPanel Orientation="Horizontal" Spacing="15">
+                                        <Button Content="Start Charging" 
+                                                Classes="success-button"
+                                                Width="150"
+                                                Click="StartCharging"/>
+                                        <Button Content="Stop Charging" 
+                                                Classes="danger-button"
+                                                Width="150"
+                                                Click="StopCharging"/>
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <Separator Height="1" Background="#E1E8ED" Margin="0,10"/>
+
+                                <StackPanel>
+                                    <TextBlock Text="Charging Schedule" Classes="label"/>
+                                    <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,10,0,0">
+                                        <TextBox x:Name="ScheduleTextBox" 
+                                                 Width="200" 
+                                                 Text="{Binding ChargingSchedule}"
+                                                 Watermark="e.g., 23:00 - 05:00"/>
+                                        <Button Content="Set Schedule" 
+                                                Classes="action-button"
+                                                Click="SetChargingSchedule"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- Tire Pressure Content -->
+                <StackPanel x:Name="TiresContent" IsVisible="False">
+                    <TextBlock Text="Tire Pressure Monitor" 
+                               FontSize="28" 
+                               FontWeight="Bold" 
+                               Foreground="#2C3E50"
+                               Margin="0,0,0,25"/>
+
+                    <Border Classes="content-panel">
+                        <StackPanel>
+                            <TextBlock Text="🛞 Tire Pressure Status" Classes="panel-title"/>
+                            
+                            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="30" RowSpacing="20" Margin="0,0,0,20">
+                                <!-- Front Left -->
+                                <Border Grid.Row="0" Grid.Column="0" 
+                                        Background="#ECF0F1" 
+                                        CornerRadius="8" 
+                                        Padding="20">
+                                    <StackPanel>
+                                        <TextBlock Text="Front Left" 
+                                                   FontSize="12" 
+                                                   Foreground="#7F8C8D" 
+                                                   Margin="0,0,0,5"/>
+                                        <TextBlock Text="{Binding TireFLPressure}" 
+                                                   FontSize="24" 
+                                                   FontWeight="Bold" 
+                                                   Foreground="#2C3E50"/>
+                                    </StackPanel>
+                                </Border>
+
+                                <!-- Front Right -->
+                                <Border Grid.Row="0" Grid.Column="1" 
+                                        Background="#ECF0F1" 
+                                        CornerRadius="8" 
+                                        Padding="20">
+                                    <StackPanel>
+                                        <TextBlock Text="Front Right" 
+                                                   FontSize="12" 
+                                                   Foreground="#7F8C8D" 
+                                                   Margin="0,0,0,5"/>
+                                        <TextBlock Text="{Binding TireFRPressure}" 
+                                                   FontSize="24" 
+                                                   FontWeight="Bold" 
+                                                   Foreground="#2C3E50"/>
+                                    </StackPanel>
+                                </Border>
+
+                                <!-- Rear Left -->
+                                <Border Grid.Row="1" Grid.Column="0" 
+                                        Background="#ECF0F1" 
+                                        CornerRadius="8" 
+                                        Padding="20">
+                                    <StackPanel>
+                                        <TextBlock Text="Rear Left" 
+                                                   FontSize="12" 
+                                                   Foreground="#7F8C8D" 
+                                                   Margin="0,0,0,5"/>
+                                        <TextBlock Text="{Binding TireRLPressure}" 
+                                                   FontSize="24" 
+                                                   FontWeight="Bold" 
+                                                   Foreground="#2C3E50"/>
+                                    </StackPanel>
+                                </Border>
+
+                                <!-- Rear Right -->
+                                <Border Grid.Row="1" Grid.Column="1" 
+                                        Background="#ECF0F1" 
+                                        CornerRadius="8" 
+                                        Padding="20">
+                                    <StackPanel>
+                                        <TextBlock Text="Rear Right" 
+                                                   FontSize="12" 
+                                                   Foreground="#7F8C8D" 
+                                                   Margin="0,0,0,5"/>
+                                        <TextBlock Text="{Binding TireRRPressure}" 
+                                                   FontSize="24" 
+                                                   FontWeight="Bold" 
+                                                   Foreground="#2C3E50"/>
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+
+                            <Button Content="Check All Tires" 
+                                    Classes="action-button"
+                                    HorizontalAlignment="Stretch"
+                                    Click="CheckTires"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- Lights Content -->
+                <StackPanel x:Name="LightsContent" IsVisible="False">
+                    <TextBlock Text="Light Control" 
+                               FontSize="28" 
+                               FontWeight="Bold" 
+                               Foreground="#2C3E50"
+                               Margin="0,0,0,25"/>
+
+                    <Border Classes="content-panel">
+                        <StackPanel>
+                            <TextBlock Text="💡 Lighting System" Classes="panel-title"/>
+                            
+                            <StackPanel Spacing="20">
+                                <Grid ColumnDefinitions="*,
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="Ambient Light" Classes="label"/>
+                                    <TextBlock Text="{Binding AmbientLight}" Classes="value"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <Separator Height="1" Background="#E1E8ED" Margin="0,10"/>
+
+                            <StackPanel>
+                                <TextBlock Text="Manual Control" Classes="label"/>
+                                <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,10,0,0">
+                                    <ComboBox x:Name="LightModeCombo" 
+                                              Width="150" 
+                                              SelectedIndex="0">
+                                        <ComboBoxItem Content="Off"/>
+                                        <ComboBoxItem Content="Parking"/>
+                                        <ComboBoxItem Content="Full"/>
+                                    </ComboBox>
+                                    <Button Content="Set Light Mode" 
+                                            Classes="action-button"
+                                            Click="SetLightMode"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <Separator Height="1" Background="#E1E8ED" Margin="0,10"/>
+
+                            <StackPanel>
+                                <CheckBox x:Name="AutoLightCheckBox"
+                                          Content="Enable Auto Mode" 
+                                          FontSize="14"
+                                          Checked="AutoLightEnabled"
+                                          Unchecked="AutoLightDisabled"/>
+                                <TextBlock Text="Lights will automatically adjust based on ambient conditions" 
+                                           FontSize="11" 
+                                           Foreground="#7F8C8D" 
+                                           Margin="25,5,0,0"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <!-- Safety Content -->
+            <StackPanel x:Name="SafetyContent" IsVisible="False">
+                <TextBlock Text="Safety Systems" 
+                           FontSize="28" 
+                           FontWeight="Bold" 
+                           Foreground="#2C3E50"
+                           Margin="0,0,0,25"/>
+
+                <Border Classes="content-panel">
+                    <StackPanel>
+                        <TextBlock Text="🚨 Reverse Alerts & Camera" Classes="panel-title"/>
+                        
+                        <StackPanel Spacing="20">
+                            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="20">
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Obstacle Status" Classes="label"/>
+                                    <TextBlock Text="{Binding ObstacleStatus}" 
+                                               FontSize="20" 
+                                               FontWeight="Bold" 
+                                               Foreground="#E74C3C"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="Distance" Classes="label"/>
+                                    <TextBlock Text="{Binding ObstacleDistance}" Classes="value"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock Text="Camera" Classes="label"/>
+                                    <TextBlock Text="{Binding CameraStatus}" Classes="value"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <Separator Height="1" Background="#E1E8ED" Margin="0,10"/>
+
+                            <Button Content="Check for Obstacles" 
+                                    Classes="action-button"
+                                    HorizontalAlignment="Stretch"
+                                    Click="CheckObstacles"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+</Grid>
