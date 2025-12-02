@@ -1,0 +1,88 @@
+using Avalonia.Controls;
+using Avalonia.Interactivity;
+using EVSystem.Components;
+using EVSystem.Mock;
+using System.Collections.ObjectModel;
+
+namespace VehicleMonitorGUI;
+
+public partial class MainWindow : Window
+{
+    private readonly BatteryMonitor _battery = new();
+    private readonly ChargingControl _charging = new();
+    private readonly LightControl _lights = new();
+    private readonly TirePressureMonitor _tire = new();
+    private readonly ReverseAlerts _reverseAlerts = new();
+    private readonly MockRearViewCamera _camera = new();
+
+    private readonly ObservableCollection<string> _pressureList = new();
+    private readonly ObservableCollection<string> _snapshots = new();
+
+    public MainWindow()
+    {
+        InitializeComponent();
+
+        PressureList.Items = _pressureList;
+        SnapshotsList.Items = _snapshots;
+
+        BatteryLevelBar.Value = _battery.GetBatteryLevel();
+        BatteryStatusText.Text = $"{_battery.GetBatteryLevel()}%";
+    }
+
+    private void StartCharging_Click(object sender, RoutedEventArgs e)
+    {
+        _charging.StartCharging();
+        ChargingStatusText.Text = "Charging Started";
+    }
+
+    private void StopCharging_Click(object sender, RoutedEventArgs e)
+    {
+        _charging.StopCharging();
+        ChargingStatusText.Text = "Charging Stopped";
+    }
+
+    private void LightsOn_Click(object sender, RoutedEventArgs e)
+    {
+        _lights.TurnLightsOn();
+        LightStatus.Text = "Lights ON";
+    }
+
+    private void LightsOff_Click(object sender, RoutedEventArgs e)
+    {
+        _lights.TurnLightsOff();
+        LightStatus.Text = "Lights OFF";
+    }
+
+    private void ReadPressure_Click(object sender, RoutedEventArgs e)
+    {
+        _pressureList.Clear();
+        var pressures = _tire.ReadPressure();
+
+        foreach (var row in pressures)
+            _pressureList.Add($"{row.Tire} → {row.Pressure} PSI");
+    }
+
+    private void CheckAlert_Click(object sender, RoutedEventArgs e)
+    {
+        var distance = DistanceSlider.Value;
+        AlertOutput.Text = _reverseAlerts.GetAlertMessage(distance);
+    }
+
+    private void ActivateCamera_Click(object sender, RoutedEventArgs e)
+    {
+        _camera.Activate();
+        CameraStatusText.Text = "Camera Activated";
+    }
+
+    private void DeactivateCamera_Click(object sender, RoutedEventArgs e)
+    {
+        _camera.Deactivate();
+        CameraStatusText.Text = "Camera Deactivated";
+    }
+
+    private void Snapshot_Click(object sender, RoutedEventArgs e)
+    {
+        var snap = _camera.CaptureSnapshot();
+        _snapshots.Add(snap);
+    }
+}

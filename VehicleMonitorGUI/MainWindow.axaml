@@ -1,0 +1,70 @@
+<Window
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="VehicleMonitorGUI.MainWindow"
+    Title="EV Vehicle Monitoring System"
+    Width="1150" Height="700">
+
+    <TabControl>
+
+        <TabItem Header="Dashboard">
+            <StackPanel Margin="20">
+                <TextBlock Text="Vehicle Status Overview" FontSize="26" FontWeight="Bold" />
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
+                    <StackPanel Width="250" Margin="15">
+                        <TextBlock Text="Battery Level" FontSize="18" />
+                        <ProgressBar x:Name="BatteryLevelBar" Minimum="0" Maximum="100" Height="25"/>
+                        <TextBlock x:Name="BatteryStatusText" Margin="5"/>
+                    </StackPanel>
+
+                    <StackPanel Width="250" Margin="15">
+                        <TextBlock Text="Charging Status" FontSize="18" />
+                        <Button Content="Start Charging" Click="StartCharging_Click" Margin="5"/>
+                        <Button Content="Stop Charging" Click="StopCharging_Click" Margin="5"/>
+                        <TextBlock x:Name="ChargingStatusText" Margin="5"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Lights">
+            <StackPanel Margin="20">
+                <TextBlock Text="Light Control" FontSize="26" FontWeight="Bold"/>
+                <Button Content="Turn Lights ON" Click="LightsOn_Click" Margin="5"/>
+                <Button Content="Turn Lights OFF" Click="LightsOff_Click" Margin="5"/>
+                <TextBlock x:Name="LightStatus" Margin="10"/>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Tire Pressure">
+            <StackPanel Margin="20">
+                <TextBlock Text="Tire Pressure Monitor" FontSize="26" FontWeight="Bold"/>
+                <Button Content="Read Pressure" Click="ReadPressure_Click" Margin="10"/>
+                <ListBox x:Name="PressureList" Height="350"/>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Reverse Alerts">
+            <StackPanel Margin="20">
+                <TextBlock Text="Reverse Alert System" FontSize="26" FontWeight="Bold"/>
+                <Slider x:Name="DistanceSlider" Minimum="0" Maximum="200" Value="100" Margin="10"/>
+                <Button Content="Check Alert" Click="CheckAlert_Click"/>
+                <TextBlock x:Name="AlertOutput" Margin="10"/>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Rear Camera">
+            <StackPanel Margin="20">
+                <TextBlock Text="Rear View Camera" FontSize="26" FontWeight="Bold"/>
+                <Button Content="Activate Camera" Click="ActivateCamera_Click"/>
+                <Button Content="Deactivate Camera" Click="DeactivateCamera_Click" Margin="10"/>
+                <Button Content="Capture Snapshot" Click="Snapshot_Click"/>
+                <ListBox x:Name="SnapshotsList" Height="300" Margin="10"/>
+                <TextBlock x:Name="CameraStatusText"/>
+            </StackPanel>
+        </TabItem>
+
+    </TabControl>
+
+</Window>

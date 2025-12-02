@@ -5,16 +5,62 @@ VisualStudioVersion = 17.14.36109.1 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleControlAndMonitorApp", "VehicleControlAndMonitorApp\VehicleControlAndMonitorApp.csproj", "{8BC86240-72CC-4C39-BFCA-9E6096C29BA7}"
 EndProject
+<<<<<<< Updated upstream
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System UI", "System UI\System UI.csproj", "{07C0A262-FBDE-4CA4-AFE3-29A25F0C5837}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleMonitorGUI", "VehicleMonitorGUI\VehicleMonitorGUI.csproj", "{C1524C48-3BC0-4BE4-A772-623117A1C8E8}"
+EndProject
+>>>>>>> Stashed changes
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{8BC86240-72CC-4C39-BFCA-9E6096C29BA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8BC86240-72CC-4C39-BFCA-9E6096C29BA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BC86240-72CC-4C39-BFCA-9E6096C29BA7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8BC86240-72CC-4C39-BFCA-9E6096C29BA7}.Debug|x64.Build.0 = Debug|Any CPU
+		{8BC86240-72CC-4C39-BFCA-9E6096C29BA7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8BC86240-72CC-4C39-BFCA-9E6096C29BA7}.Debug|x86.Build.0 = Debug|Any CPU
 		{8BC86240-72CC-4C39-BFCA-9E6096C29BA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BC86240-72CC-4C39-BFCA-9E6096C29BA7}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< Updated upstream
+=======
+		{8BC86240-72CC-4C39-BFCA-9E6096C29BA7}.Release|x64.ActiveCfg = Release|Any CPU
+		{8BC86240-72CC-4C39-BFCA-9E6096C29BA7}.Release|x64.Build.0 = Release|Any CPU
+		{8BC86240-72CC-4C39-BFCA-9E6096C29BA7}.Release|x86.ActiveCfg = Release|Any CPU
+		{8BC86240-72CC-4C39-BFCA-9E6096C29BA7}.Release|x86.Build.0 = Release|Any CPU
+		{07C0A262-FBDE-4CA4-AFE3-29A25F0C5837}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07C0A262-FBDE-4CA4-AFE3-29A25F0C5837}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07C0A262-FBDE-4CA4-AFE3-29A25F0C5837}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{07C0A262-FBDE-4CA4-AFE3-29A25F0C5837}.Debug|x64.Build.0 = Debug|Any CPU
+		{07C0A262-FBDE-4CA4-AFE3-29A25F0C5837}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{07C0A262-FBDE-4CA4-AFE3-29A25F0C5837}.Debug|x86.Build.0 = Debug|Any CPU
+		{07C0A262-FBDE-4CA4-AFE3-29A25F0C5837}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07C0A262-FBDE-4CA4-AFE3-29A25F0C5837}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07C0A262-FBDE-4CA4-AFE3-29A25F0C5837}.Release|x64.ActiveCfg = Release|Any CPU
+		{07C0A262-FBDE-4CA4-AFE3-29A25F0C5837}.Release|x64.Build.0 = Release|Any CPU
+		{07C0A262-FBDE-4CA4-AFE3-29A25F0C5837}.Release|x86.ActiveCfg = Release|Any CPU
+		{07C0A262-FBDE-4CA4-AFE3-29A25F0C5837}.Release|x86.Build.0 = Release|Any CPU
+		{C1524C48-3BC0-4BE4-A772-623117A1C8E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1524C48-3BC0-4BE4-A772-623117A1C8E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1524C48-3BC0-4BE4-A772-623117A1C8E8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C1524C48-3BC0-4BE4-A772-623117A1C8E8}.Debug|x64.Build.0 = Debug|Any CPU
+		{C1524C48-3BC0-4BE4-A772-623117A1C8E8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C1524C48-3BC0-4BE4-A772-623117A1C8E8}.Debug|x86.Build.0 = Debug|Any CPU
+		{C1524C48-3BC0-4BE4-A772-623117A1C8E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1524C48-3BC0-4BE4-A772-623117A1C8E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1524C48-3BC0-4BE4-A772-623117A1C8E8}.Release|x64.ActiveCfg = Release|Any CPU
+		{C1524C48-3BC0-4BE4-A772-623117A1C8E8}.Release|x64.Build.0 = Release|Any CPU
+		{C1524C48-3BC0-4BE4-A772-623117A1C8E8}.Release|x86.ActiveCfg = Release|Any CPU
+		{C1524C48-3BC0-4BE4-A772-623117A1C8E8}.Release|x86.Build.0 = Release|Any CPU
+>>>>>>> Stashed changes
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
