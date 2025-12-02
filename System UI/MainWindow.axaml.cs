@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Threading;
 using EVSystem.Components;
 using EVSystem.Controllers;
@@ -58,6 +59,8 @@ namespace System_UI
             RefreshButton.Click += (_, _) => _controller.RefreshSystemData();
             StartChargeButton.Click += (_, _) => _controller.StartCharging();
             StopChargeButton.Click += (_, _) => _controller.StopCharging();
+            RefreshBatteryButton.Click += RefreshBatteryClick;
+            RefreshChargingButton.Click += RefreshChargingClick;
 
             // Set limit charge
             _controller.OnChargeLimitChanged += UpdateChargeLimitDisplay;
@@ -117,6 +120,15 @@ namespace System_UI
         }
 
 
+        private void RefreshBatteryClick(object? sender, RoutedEventArgs e)
+        {
+            _controller.RefreshBatteryData();
+        }
+
+        private void RefreshChargingClick(object? sender, RoutedEventArgs e)
+        {
+            _controller.RefreshChargingData();
+        }
 
 
     }

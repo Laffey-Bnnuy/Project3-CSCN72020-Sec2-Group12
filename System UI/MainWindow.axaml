@@ -16,7 +16,7 @@
                    FontSize="16"/>
 
         <TextBlock x:Name="ChargingLabel"
-                   Text="Charging: Unknown"
+                   Text="Charging: NO"
                    FontSize="16"/>
 
         <TextBlock x:Name="StatusLabel"
@@ -24,10 +24,16 @@
                    FontSize="14"
                    Foreground="Gray"/>
 
+
         <Separator/>
 
         <StackPanel Orientation="Horizontal" Spacing="10">
-            <Button x:Name="RefreshButton" Content="Refresh" Width="120"/>
+            <Button x:Name="RefreshButton" Content="Refresh Both" Width="120"/>
+            <StackPanel Orientation="Horizontal" Spacing="10">
+            <Button x:Name="RefreshBatteryButton" Content="Refresh Battery" Width="140"/>
+            <Button x:Name="RefreshChargingButton" Content="Refresh Charging" Width="140"/>
+            </StackPanel>
+
             <Button x:Name="StartChargeButton" Content="Start Charging" Width="140"/>
             <Button x:Name="StopChargeButton" Content="Stop Charging" Width="140"/>
         </StackPanel>

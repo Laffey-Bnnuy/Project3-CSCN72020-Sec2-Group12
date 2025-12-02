@@ -35,21 +35,34 @@ namespace EVSystem.Controllers
             OnChargingStateChanged?.Invoke(_chargingControl.IsCharging);
             OnChargeLimitChanged?.Invoke(_chargingControl.ChargeLimit);
         }
+        public void RefreshBatteryData()
+        {
+            _batteryMonitor.LoadNextData();
+            OnBatteryLevelChanged?.Invoke(_batteryMonitor.BatteryLevel);
+            OnStatusChanged?.Invoke(GetBatteryStatus());
+        }
 
+        public void RefreshChargingData()
+        {
+            _chargingControl.LoadNextData();
+            OnChargingStateChanged?.Invoke(_chargingControl.IsCharging);
+            OnChargeLimitChanged?.Invoke(_chargingControl.ChargeLimit);
+            //OnStatusChanged?.Invoke("Charging data refreshed.");
+        }
         // Charging control
 
         public void StartCharging()
         {
             _chargingControl.StartCharging();
             OnChargingStateChanged?.Invoke(true);
-            OnStatusChanged?.Invoke("Charging started.");
+           // OnStatusChanged?.Invoke("Charging started.");
         }
 
         public void StopCharging()
         {
             _chargingControl.StopCharging();
             OnChargingStateChanged?.Invoke(false);
-            OnStatusChanged?.Invoke("Charging stopped.");
+           // OnStatusChanged?.Invoke("Charging stopped.");
         }
 
        
