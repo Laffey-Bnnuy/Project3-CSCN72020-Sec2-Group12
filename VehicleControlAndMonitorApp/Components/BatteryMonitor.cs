@@ -3,6 +3,7 @@ using EVSystem.Communication;
 using System;
 using System.IO;
 using System.Linq;
+using VehicleControlAndMonitorApp.Utilities;
 
 namespace EVSystem.Components
 {
@@ -19,20 +20,26 @@ namespace EVSystem.Components
         public float RemainingKm { get; private set; }
         public string BatteryMode { get; private set; }
 
-        public bool AutoMode { get; private set; }     // Matches style of LightControl
+        public bool AutoMode { get; private set; }
+       
 
         public BatteryMonitor(J1939Adapter adapter, string dataFilePath = "Data/battery_data.csv")
         {
             _j1939Adapter = adapter;
-            _dataFilePath = dataFilePath;
+            _dataFilePath = PathResolver.GetDynamicProjectDataPath(
+            "VehicleControlAndMonitorApp",
+            "Data",
+            "battery_data.csv"
+        );
             _currentIndex = 0;
 
             _j1939Adapter.Register();
             BatteryMode = "Normal";
             AutoMode = false;
 
+           
             LoadBatteryData();
-            LoadNextData();
+            
         }
 
         private void LoadBatteryData()

@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36109.1 d17.14
+VisualStudioVersion = 17.14.36109.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleControlAndMonitorApp", "VehicleControlAndMonitorApp\VehicleControlAndMonitorApp.csproj", "{8BC86240-72CC-4C39-BFCA-9E6096C29BA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System UI", "System UI\System UI.csproj", "{07C0A262-FBDE-4CA4-AFE3-29A25F0C5837}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{8BC86240-72CC-4C39-BFCA-9E6096C29BA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BC86240-72CC-4C39-BFCA-9E6096C29BA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BC86240-72CC-4C39-BFCA-9E6096C29BA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07C0A262-FBDE-4CA4-AFE3-29A25F0C5837}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07C0A262-FBDE-4CA4-AFE3-29A25F0C5837}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07C0A262-FBDE-4CA4-AFE3-29A25F0C5837}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07C0A262-FBDE-4CA4-AFE3-29A25F0C5837}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

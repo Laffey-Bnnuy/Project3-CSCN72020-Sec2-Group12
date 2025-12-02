@@ -1,0 +1,50 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="System_UI.MainWindow"
+        Width="800"
+        Height="600"
+        Title="EV System UI (Test)">
+    
+   <StackPanel Margin="20" Spacing="12">
+
+        <TextBlock Text="EV System Dashboard" 
+                   FontSize="22" 
+                   FontWeight="Bold"/>
+
+        <TextBlock x:Name="BatteryLabel"
+                   Text="Battery Level: --%"
+                   FontSize="16"/>
+
+        <TextBlock x:Name="ChargingLabel"
+                   Text="Charging: Unknown"
+                   FontSize="16"/>
+
+        <TextBlock x:Name="StatusLabel"
+                   Text="Status: Waiting..."
+                   FontSize="14"
+                   Foreground="Gray"/>
+
+        <Separator/>
+
+        <StackPanel Orientation="Horizontal" Spacing="10">
+            <Button x:Name="RefreshButton" Content="Refresh" Width="120"/>
+            <Button x:Name="StartChargeButton" Content="Start Charging" Width="140"/>
+            <Button x:Name="StopChargeButton" Content="Stop Charging" Width="140"/>
+        </StackPanel>
+       <StackPanel Spacing="10" Margin="20">
+
+    <TextBlock Text="Set Charge Limit (%)" FontWeight="Bold"/>
+
+    <StackPanel Orientation="Horizontal" Spacing="10">
+        <TextBox x:Name="LimitInput" Width="70" Watermark="10-100"/>
+        <Button x:Name="ApplyLimitBtn" Content="Apply" Width="80"/>
+    </StackPanel>
+
+    <TextBlock x:Name="LimitStatus" Text="Current limit: 80%" Foreground="Gray"/>
+
+</StackPanel>
+
+
+    </StackPanel>
+
+</Window>

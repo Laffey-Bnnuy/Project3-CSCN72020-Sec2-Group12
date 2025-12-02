@@ -3,7 +3,7 @@ using EVSystem.Communication;
 using System;
 using System.IO;
 using System.Linq;
-
+using VehicleControlAndMonitorApp.Utilities;
 namespace EVSystem.Components
 {
     public class ChargingControl : IChargingControl
@@ -19,15 +19,19 @@ namespace EVSystem.Components
         public float ChargeLimit { get; private set; }
         public string Schedule { get; private set; }
 
-        private const float ChargeRatePerCycle = 2.5f; // % increase per LoadNextData
+        private const float ChargeRatePerCycle = 2f; // % increase per LoadNextData
 
-        public ChargingControl(J1939Adapter j1939Adapter, IBattery battery, string dataFilePath = "Data/charging_data.csv")
+        public ChargingControl(J1939Adapter j1939Adapter, IBattery battery)
         {
             _j1939Adapter = j1939Adapter;
             _battery = battery;
 
             _j1939Adapter.Register();
-            _dataFilePath = dataFilePath;
+            _dataFilePath = PathResolver.GetDynamicProjectDataPath(
+            "VehicleControlAndMonitorApp",
+            "Data",
+            "charging_data.csv"
+        );
 
             LoadChargingData();
             LoadNextData();
@@ -88,8 +92,11 @@ namespace EVSystem.Components
             if (_battery == null) return;
 
             float newLevel = _battery.BatteryLevel + ChargeRatePerCycle;
-
-            if (newLevel >= ChargeLimit)
+            if (_battery.BatteryLevel >= ChargeLimit)
+            {
+                return;
+            }
+            else if (newLevel >= ChargeLimit)
             {
                 newLevel = ChargeLimit;
                 IsCharging = false;

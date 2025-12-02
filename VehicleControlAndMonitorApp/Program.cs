@@ -56,10 +56,10 @@ namespace EVSystem
                 // --- Incorporate dev_Daniel Logic into the loop ---
                 
                 // Battery status update
-                battery.UpdateBatteryLevel(95 - (i * 5)); // Simulate dropping battery level
+                //battery.UpdateBatteryLevel(95 - (i * 5)); // Simulate dropping battery level
                 Console.WriteLine($"\nBattery current status (Cycle {i+1}):");
                 Console.WriteLine(battery.GetStatus());
-
+                battery.LoadNextData();
                 Console.WriteLine("\n--- Waiting 2 seconds before next cycle ---\n");
                 Thread.Sleep(2000);
             }

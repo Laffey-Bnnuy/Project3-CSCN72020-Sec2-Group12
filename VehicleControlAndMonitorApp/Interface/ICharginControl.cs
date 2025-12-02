@@ -14,5 +14,7 @@
         void StopCharging();
         void SetChargeLimit(float limit);
         void ScheduleCharging(string schedule);
+        public void LoadNextData();
+
     }
 }
