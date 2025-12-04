@@ -94,7 +94,33 @@
             </StackPanel>
         </TabItem>
 
-     
+
+     <TabItem Header="Climate &amp; Drive">
+    <StackPanel Margin="20" Spacing="12">
+        <TextBlock Text="Climate + Drive Mode Panel"
+                   FontSize="26" 
+                   FontWeight="Bold"/>
+
+        <TextBlock Text="This opens the UI built by Jaskaran (Member 2)"
+                   FontSize="14"
+                   Foreground="Gray"/>
+
+        <Button x:Name="OpenJasUIButton"
+        Content="Open Climate &amp; Drive UI (Jaskaran)"
+        Width="180"
+        Height="40"
+        Background="#2D85F0"
+        Foreground="White"
+        Margin="10"/>
+
+    </StackPanel>
+</TabItem>
+
+
 
      </TabControl>  
+
+
+
+
 </Window>
