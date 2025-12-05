@@ -78,8 +78,12 @@ namespace System_UI
             RefreshBatteryButton.Click += RefreshBatteryClick;
             RefreshChargingButton.Click += RefreshChargingClick;
 
-            // Set limit charge
-            _controller.OnChargeLimitChanged += UpdateChargeLimitDisplay;
+			// UI for Jas
+			OpenJasUIButton.Click += OpenJasUIButton_Click;
+
+
+		// Set limit charge
+		_controller.OnChargeLimitChanged += UpdateChargeLimitDisplay;
             LimitStatus.Text = $"Current limit: {_controller.GetChargeLimit()}%";
             LimitInput.Text = _controller.GetChargeLimit().ToString();
 
@@ -203,6 +207,14 @@ namespace System_UI
             var snap = _camera.CaptureSnapshot();
             _snapshots.Add(snap);
         }
-    }
+        // Jas UI
+		private void OpenJasUIButton_Click(object? sender, RoutedEventArgs e)
+		{
+			var jasWindow = new JasUI();  
+			jasWindow.Show();             
+		}
+
+	}
 
 }
+
