@@ -20,7 +20,7 @@ namespace System_UI
 
 			// Create shared adapter + components from EVSystem
 			var j1939 = new MockJ1939Adapter();
-			_battery = new BatteryMonitor(j1939);
+			_battery = new BatteryMonitor(j1939,"");
 			_climate = new ClimateControl();
 			_driveModes = new DriveModeSelector(_battery); 
 
