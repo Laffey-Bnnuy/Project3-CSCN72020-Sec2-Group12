@@ -21,17 +21,27 @@ namespace EVSystem.Components
 
         private const float ChargeRatePerCycle = 2f; // % increase per LoadNextData
 
-        public ChargingControl(J1939Adapter j1939Adapter, IBattery battery)
+        public ChargingControl(J1939Adapter j1939Adapter, IBattery battery,
+                               string dataFilePath = "charging_test.csv",
+                               bool usePathResolver = true)
         {
             _j1939Adapter = j1939Adapter;
             _battery = battery;
 
             _j1939Adapter.Register();
-            _dataFilePath = PathResolver.GetDynamicProjectDataPath(
-            "VehicleControlAndMonitorApp",
-            "Data",
-            "charging_data.csv"
-        );
+
+            if (usePathResolver)
+            {
+                _dataFilePath = PathResolver.GetDynamicProjectDataPath(
+                    "VehicleControlAndMonitorApp",
+                    "Data",
+                    "charging_data.csv"
+                );
+            }
+            else
+            {
+                _dataFilePath = dataFilePath;
+            }
 
             LoadChargingData();
             LoadNextData();
@@ -105,7 +115,7 @@ namespace EVSystem.Components
 
             _battery.UpdateBatteryLevel(newLevel);
 
-           
+
             if (_battery.Temperature < 45)
                 _battery.Temperature += 0.3f;
         }

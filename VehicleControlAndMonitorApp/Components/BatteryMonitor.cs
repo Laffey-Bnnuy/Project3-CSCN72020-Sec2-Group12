@@ -21,26 +21,34 @@ namespace EVSystem.Components
         public string BatteryMode { get; private set; }
 
         public bool AutoMode { get; private set; }
-       
 
-        public BatteryMonitor(J1939Adapter adapter, string dataFilePath = "Data/battery_data.csv")
+
+        public BatteryMonitor(J1939Adapter adapter, string dataFilePath, bool usePathResolver = true)
         {
             _j1939Adapter = adapter;
-            _dataFilePath = PathResolver.GetDynamicProjectDataPath(
-            "VehicleControlAndMonitorApp",
-            "Data",
-            "battery_data.csv"
-        );
+
+            if (usePathResolver)
+            {
+                _dataFilePath = PathResolver.GetDynamicProjectDataPath(
+                    "VehicleControlAndMonitorApp",
+                    "Data",
+                    "battery_data.csv"
+                );
+            }
+            else
+            {
+                _dataFilePath = dataFilePath;
+            }
+
             _currentIndex = 0;
 
             _j1939Adapter.Register();
             BatteryMode = "Normal";
             AutoMode = false;
 
-           
             LoadBatteryData();
-            
         }
+
 
         private void LoadBatteryData()
         {

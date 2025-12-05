@@ -25,7 +25,7 @@ namespace EVSystem
             var lightControl = new LightControl(j1939);
             
             // --- Components from dev_Daniel Branch ---
-            IBattery battery = new BatteryMonitor(adapter);
+            IBattery battery = new BatteryMonitor(adapter,"Data/battery_data.csv");
             IChargingControl charger = new ChargingControl(adapter,battery);
 
             // ------------------------------------------------------------------

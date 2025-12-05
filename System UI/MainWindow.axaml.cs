@@ -38,7 +38,7 @@ namespace System_UI
           
             // Create system components
             var j1939 = new MockJ1939Adapter();
-            var battery = new BatteryMonitor(j1939);
+            var battery = new BatteryMonitor(j1939, "Data/battery_data.csv");
             var charger = new ChargingControl(j1939,battery);
 
             _controller = new EVSystemController(battery, charger);
