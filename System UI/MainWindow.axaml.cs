@@ -23,7 +23,7 @@ namespace System_UI
         private readonly ObservableCollection<string> _snapshots = new();
         private float _stepRate = 2f; // Battery % per tick
 
-        // Nikhil
+        
       
         private readonly MockLightControl _lights = new();
         private readonly MockTirePressureMonitor _tire = new();
