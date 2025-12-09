@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36603.0 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EVSystem.JasTests", "EVSystem.JasTests\EVSystem.JasTests.csproj", "{A429C876-E7A3-466A-894D-40170B57AF21}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleControlAndMonitorApp", "..\Project3-CSCN72020-Sec2-Group12\VehicleControlAndMonitorApp\VehicleControlAndMonitorApp.csproj", "{F8D43A43-3BC1-46B3-2C4B-E04AB24FEB07}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A429C876-E7A3-466A-894D-40170B57AF21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A429C876-E7A3-466A-894D-40170B57AF21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A429C876-E7A3-466A-894D-40170B57AF21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A429C876-E7A3-466A-894D-40170B57AF21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8D43A43-3BC1-46B3-2C4B-E04AB24FEB07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8D43A43-3BC1-46B3-2C4B-E04AB24FEB07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8D43A43-3BC1-46B3-2C4B-E04AB24FEB07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8D43A43-3BC1-46B3-2C4B-E04AB24FEB07}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {18F0F15A-A528-4E15-8284-1496FDC574CA}
+	EndGlobalSection
+EndGlobal
