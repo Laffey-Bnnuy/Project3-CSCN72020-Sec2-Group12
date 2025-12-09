@@ -22,7 +22,7 @@ namespace EV_SCADA.Modules
         public event Action<DoorState>? OnStateChanged;
 
         // -----------------------------
-        // SPRINT 2 NEW: Token Revocation
+        //  Token Revocation
         // -----------------------------
         public bool RevokeToken(string tokenId)
         {
@@ -38,7 +38,7 @@ namespace EV_SCADA.Modules
         }
 
         // -----------------------------
-        // Sprint 1: Token generation
+        // Token generation
         // -----------------------------
         public AccessToken GenerateToken(TimeSpan duration)
         {
@@ -52,7 +52,7 @@ namespace EV_SCADA.Modules
         }
 
         // -----------------------------
-        // Sprint 2: Multi-token support
+        //  Multi-token support
         // -----------------------------
         public List<AccessToken> GetActiveTokens()
         {
@@ -95,7 +95,7 @@ namespace EV_SCADA.Modules
         }
 
         // -----------------------------
-        // Sprint 2: Auto-relock logic
+        //  Auto-relock logic
         // -----------------------------
         private void StartAutoRelock(int seconds)
         {
@@ -127,7 +127,7 @@ namespace EV_SCADA.Modules
         }
 
         // -----------------------------
-        // Sprint 2: Fault simulation
+        //  Fault simulation
         // -----------------------------
         public void TriggerFault()
         {
