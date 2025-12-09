@@ -16,42 +16,42 @@ class Program
             Console.WriteLine($"[EVENT] Door state changed → {state}");
         };
 
-        // 1. Generate a token
+        //  Generate a token
         Console.WriteLine("\nGenerating 1-minute token...");
         var token = door.GenerateToken(TimeSpan.FromMinutes(1));
         Console.WriteLine($"Token Created: {token.Id}");
 
-        // 2. Unlock using the token
+        //  Unlock using the token
         Console.WriteLine("\nUnlocking door...");
         await door.UnlockDoorAsync(token.Id);
 
-        // 3. Auto-relock demonstration
+        // Auto-relock demonstration
         Console.WriteLine("\nWaiting 6 seconds to show auto-relock...");
         await Task.Delay(6000);
         Console.WriteLine($"Door State After Auto-Relock: {door.State}");
 
-        // 4. Show active tokens
+        //  Show active tokens
         Console.WriteLine("\nActive Tokens:");
         foreach (var t in door.GetActiveTokens())
             Console.WriteLine($" - Token: {t.Id}");
 
-        // 5. Revoke the token
+        //  Revoke the token
         Console.WriteLine("\nRevoking token...");
         bool revoked = door.RevokeToken(token.Id);
         Console.WriteLine($"Revoke Result: {revoked}");
 
-        // 6. Try unlocking with revoked token
+        //  Try unlocking with revoked token
         Console.WriteLine("\nAttempting unlock with revoked token...");
         bool unlockAttempt = await door.UnlockDoorAsync(token.Id);
         Console.WriteLine($"Unlock Attempt Success: {unlockAttempt}");
         Console.WriteLine($"Failed Attempts Count: {door.FailedAttempts}");
 
-        // 7. Trigger fault state
+        //  Trigger fault state
         Console.WriteLine("\nTriggering fault state...");
         door.TriggerFault();
         Console.WriteLine($"Current State: {door.State}");
 
-        // 8. Print system logs
+        //  Print system logs
         Console.WriteLine("\n=== ACCESS LOGS ===");
         door.PrintStatus();
 
