@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="System_UI.Modules.DoorControl.DoorControlView">
+
+    <StackPanel Margin="10" Spacing="8">
+
+        <TextBlock Text="Door Control"
+                   FontSize="20"
+                   FontWeight="Bold"/>
+
+        <TextBlock x:Name="DoorStateText"
+                   Text="State: Locked"
+                   Margin="0,5"/>
+
+        <Button x:Name="UnlockButton"
+                Content="Unlock Door"
+                Click="Unlock_Click"/>
+
+        <Button x:Name="LockButton"
+                Content="Lock Door"
+                Click="Lock_Click"/>
+
+        <Button x:Name="GenerateTokenButton"
+                Content="Generate Token"
+                Click="GenerateToken_Click"/>
+
+        <ListBox x:Name="DoorLogsList"
+                 Height="200"/>
+    </StackPanel>
+</UserControl>
