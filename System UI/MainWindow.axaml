@@ -1,5 +1,8 @@
+
+
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dc="clr-namespace:System_UI.Modules.DoorControl"
         x:Class="System_UI.MainWindow"
         Width="1000"
         Height="600"
@@ -93,6 +96,11 @@
                 <TextBlock x:Name="CameraStatusText"/>
             </StackPanel>
         </TabItem>
+
+        <TabItem Header="Door Control">
+    <dc:DoorControlView />
+</TabItem>
+
 
 
      <TabItem Header="Climate &amp; Drive">
